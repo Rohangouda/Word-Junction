@@ -6,6 +6,12 @@
   <div class="fancy margin">
     <input type="text" [(ngModel)]="word" (change)="searchWord(word)" placeholder="Enter a word to search">
     <!-- <button (click)="searchWord()" class="search-button">Search</button> -->
+    <span mat-fab extended style="position: absolute;
+    z-index: 20;
+    margin-top: 26px;
+    margin-left: 38%;">
+      <mat-icon (click)="searchWord(word)">search</mat-icon>
+  </span>
   </div>
 
 </div>
