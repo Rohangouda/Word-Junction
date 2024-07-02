@@ -1,0 +1,49 @@
+<mat-card appearance="outlined">
+  <!-- <a href="https://www.buymeacoffee.com/rohangouda" class="mt-3 mb-1"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=rohangouda&button_colour=5F7FFF&font_colour=ffffff&font_family=Poppins&outline_colour=000000&coffee_colour=FFDD00" /></a> -->
+  <h1 data-text="Discover Definitions and Synonyms Effortlessly" class="mt-3">Discover Definitions and Synonyms Effortlessly</h1>
+<div class="mt-4 mb-3">
+  <!-- <input [(ngModel)]="word" placeholder="Enter a word" class="input-box" /> -->
+  <div class="fancy margin">
+    <input type="text" [(ngModel)]="word" (change)="searchWord(word)" placeholder="Enter a word to search">
+    <!-- <button (click)="searchWord()" class="search-button">Search</button> -->
+  </div>
+
+</div>
+<div class="mt-3 mb-3">
+  <mat-card-content *ngIf="audioUrl">   <audio [src]="audioUrl" controls></audio></mat-card-content>
+</div>
+<div>
+  <mat-list class="px-5 mt-3 mb-3" *ngIf="definitions.length > 0">
+    <div mat-subheader><h1  data-text="Discover Definitions" > Definition</h1></div>
+    <mat-list-item *ngFor="let def of definitions">
+      <!-- <img
+        matListItemIcon
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Eo_circle_blue_arrow-right.svg/2048px-Eo_circle_blue_arrow-right.svg.png"
+        alt=""
+      /> -->
+      <div matListItemTitle>{{ def.definition }}</div>
+      <div *ngIf="def.example !== 'No example available'" matListItemLine style="color: #e21cd3; font-size: 1rem;">
+        {{ def.example }}
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>
+
+<mat-divider *ngIf="synonyms.length > 0" class="mt-3"></mat-divider>
+<div class="px-5 mt-3 mb-3">
+  <mat-card-content  *ngIf="synonyms.length > 0"> <h1 class="mb-3" data-text="Discover Definitions"> Synonym</h1></mat-card-content>
+  <mat-chip-set aria-label="synonyms-container" *ngIf="synonyms.length > 0">
+    <mat-chip *ngFor="let synonym of synonyms">
+     
+      <img
+        matChipAvatar
+        src="https://th.bing.com/th/id/OIP.Ci74n4MqBx8-XaUOm3WSdAHaHa?rs=1&pid=ImgDetMain"
+        alt="Photo of a Shiba Inu"
+      />
+      <div  (click)="searchWord(synonym)">
+      {{synonym}}
+    </div>
+    </mat-chip>
+  </mat-chip-set>
+</div>
+</mat-card>
