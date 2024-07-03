@@ -24,6 +24,7 @@ export class DictionaryComponent {
   example: string = '';
   synonyms: string[] = [];
   audioUrl: string = '';
+  err : string='';
 
   constructor(private dictionaryService: DictionaryServiceService) { }
 
@@ -77,9 +78,11 @@ export class DictionaryComponent {
             this.audioUrl = entry.phonetics.find((p: { audio: any; }) => p.audio)?.audio || '';
           }
         }
+        this.err = "";
       },
       error => {
         console.error('Error fetching data:', error);
+          this.err = "Sorry pal, we couldn't find definitions for the word you were looking for";
       }
     );
   }
